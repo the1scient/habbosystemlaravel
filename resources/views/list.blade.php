@@ -35,8 +35,8 @@
                                         <td>{{ $usuario->nickname }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
-                                            <a href="{{ url('usuarios/editar/' . $usuario->id) }}">Editar</a>
-                                            <a href="{{ url('usuarios/excluir/' . $usuario->id) }}">Excluir</a>
+                                            <a href="{{ url('usuarios/editar/' . $usuario->id) }}" class="btn btn-warning">Editar</a>
+                                            <a href="{{ url('usuarios/excluir/' . $usuario->id) }}" class="btn btn-danger">Excluir</a>
                                         </td>
                                     </tr>
                                 @endforeach
