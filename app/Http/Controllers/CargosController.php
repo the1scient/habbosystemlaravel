@@ -16,4 +16,9 @@ class CargosController extends Controller
         $cargos = Cargo::all();
         return $cargos;
     }
+
+    public function getCargoCorById($id) {
+        $cargo = Cargo::where('id', $id)->first();
+        return $cargo->cor;
+    }
 }

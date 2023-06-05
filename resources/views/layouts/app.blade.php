@@ -30,6 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <!-- ver /usuarios -->
+                        @guest()
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link mt-1 text-black" href="{{ url('usuarios') }}">Usuários</a>
+                        </li>
+                        @endguest
 
                     </ul>
 
@@ -49,6 +56,7 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item dropdown">
                                 <div style="display: flex; margin-top: -40%; float: left; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&size=b'); background-repeat: no-repeat;"></div>
 

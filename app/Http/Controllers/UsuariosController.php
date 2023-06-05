@@ -10,16 +10,17 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    public function index() {
-
-        // usuarios all order by cargo id
-        $usuarios = Usuario::orderBy('cargo', 'asc')->get();
+    public function index()
+    {
+        // Order the usuarios by cargo id
+        $usuarios = Usuario::all()->sortBy('cargo');
 
         $cargoController = new CargosController();
         $cargos = $cargoController->getAllCargos();
 
         return view('list', ['usuarios' => $usuarios, 'cargos' => $cargos]);
     }
+
 
     public function create() {
        // return view novo + cargos
