@@ -50,11 +50,16 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <div style="display: flex; margin-top: -45%; float: left; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=spk&size=b'); background-repeat: no-repeat;"></div>
+
+                                <a id="navbarDropdown" class="mt-1 nav-link dropdown-toggle font-weight-bold text-black" style="justify-content: center; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->username }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('perfil/' . Auth::user()->username) }}">
+                                        {{ __('Meu perfil') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -30,3 +30,4 @@ Route::post('/usuarios/add', [App\Http\Controllers\UsuariosController::class, 'a
 Route::get('/usuarios/{id}/editar', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('usuarios.edit')->middleware('auth');
 Route::post('/usuarios/{id}/update', [App\Http\Controllers\UsuariosController::class, 'update'])->name('usuarios.update')->middleware('auth');
 Route::get('/usuarios/{id}/delete', [App\Http\Controllers\UsuariosController::class, 'delete'])->name('usuarios.delete')->middleware('auth');
+Route::get('/perfil/{username}', [App\Http\Controllers\UsuariosController::class, 'perfil'])->name('usuarios.perfil')->middleware('auth');

@@ -45,4 +45,14 @@ class UsuariosController extends Controller
         return Redirect::to('/usuarios');
     }
 
+    public function perfil($username) {
+        $usuario = Usuario::where('nickname', $username)->first();
+
+        if(!$usuario) {
+            return Redirect::to('/usuarios');
+        }
+
+        return view('perfil', ['usuario' => $usuario]);
+    }
+
 }

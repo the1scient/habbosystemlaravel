@@ -37,7 +37,7 @@
                                     <tr>
                                         <th scope="row">{{ $usuario->id }}</th>
                                         <td><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?user={{ $usuario->nickname }}&action=std&gesture=std&direction=2&head_direction=2&size=m&img_format=png" alt="avatar"></td>
-                                        <td>{{ $usuario->nickname }}</td>
+                                        <td><a href="{{ url('/perfil/' . $usuario->nickname) }}">{{ $usuario->nickname }}</a></td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
                                             <a href="{{ url('usuarios/' . $usuario->id) . '/editar' }}" class="btn btn-warning">Editar</a>
