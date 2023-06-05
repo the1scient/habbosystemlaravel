@@ -2,41 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CargosController;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
-use App\Http\Controllers\CargosController;
 
 class UsuariosController extends Controller
 {
     public function index() {
 
-        $usuarios = Usuario::all();
+        // usuarios all order by cargo id
+        $usuarios = Usuario::orderBy('cargo', 'asc')->get();
 
-        return view('list', ['usuarios' => $usuarios]);
+        $cargoController = new CargosController();
+        $cargos = $cargoController->getAllCargos();
+
+        return view('list', ['usuarios' => $usuarios, 'cargos' => $cargos]);
     }
 
     public function create() {
-        return view('novo');
+       // return view novo + cargos
+        $cargoController = new CargosController();
+        $cargos = $cargoController->getAllCargos();
+        return view('novo', ['cargos' => $cargos]);
     }
 
     public function add(Request $request) {
+        // Obter o ID do usuário atualmente autenticado
+        $promovidoPor = auth()->user()->id;
+
+        // Criar um novo usuário e preencher os dados
         $usuario = new Usuario();
-        $usuario = $usuario->create($request->all());
+        $usuario->nickname = $request->nickname;
+        // Definir o campo promovido_por como o ID do usuário atual
+        $usuario->promovido_por = $promovidoPor;
+        // Preencher outros campos do usuário, se houver
+        // cargo
+        $usuario->cargo = $request->cargo;
+
+        // Salvar o usuário no banco de dados
+        $usuario->save();
+
         return Redirect::to('/usuarios');
     }
 
+
+
     public function edit($id) {
         $usuario = Usuario::findOrFail($id);
-        return view('edit', ['usuario' => $usuario]);
+
+        $cargoController = new CargosController();
+        $cargos = $cargoController->getAllCargos();
+
+        return view('edit', ['usuario' => $usuario, 'cargos' => $cargos]);
     }
 
     public function update(Request $request, $id) {
         $usuario = Usuario::findOrFail($id);
         $usuario->update($request->all());
         Session::flash('message', 'Usuário atualizado com sucesso!');
-        return Redirect::to('/usuarios');
+        return Redirect::to('/perfil/' . $usuario->nickname);
     }
 
     public function delete($id) {
@@ -50,7 +76,7 @@ class UsuariosController extends Controller
         $usuario = Usuario::where('nickname', $username)->first();
 
         $cargoController = new CargosController();
-        $cargo = $cargoController->getCargoById($usuario->id);
+        $cargo = $cargoController->getCargoById($usuario->cargo);
 
         if(!$usuario) {
             return Redirect::to('/usuarios');

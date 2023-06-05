@@ -59,6 +59,43 @@
 
             </div>
 
+            <div class="col-md-4">
+
+            </div>
+
+            <div class="col-md-8 mt-3">
+
+                <div class="card">
+
+                    <div class="card-header">{{ __('Histórico de Promoções | ' . $usuario->nickname) }}</div>
+
+                    <div class="card-body">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Promovido por</th>
+                                    <th scope="col">Cargo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                    <tr>
+                                        <td>{{ date('d/m/Y H:i') }}</td>
+                                        <td>{{ 'test' }}</td>
+                                        <td>{{ 'test3' }}</td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
 
 
 <script>

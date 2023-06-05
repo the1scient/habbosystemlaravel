@@ -23,8 +23,13 @@
                                 <input class="form-control mt-1" type="text" name="nickname" id="nome"  value="{{ $usuario->nickname }}">
                             </div>
                             <div class="form-group mt-2">
-                                <label for="email">E-mail:</label>
-                                <input class="form-control mt-1" type="text" name="email" id="email" value="{{ $usuario->email }}">
+
+                                <label for="cargo">Cargo:</label>
+                                <select class="form-control mt-1" name="cargo" id="cargo">
+                                    @foreach ($cargos as $cargo)
+                                        <option value="{{ $cargo->id }}" {{ $usuario->cargo == $cargo->id ? 'selected' : '' }}>{{ $cargo->nome }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <button class="btn btn-primary mt-3" type="submit">Enviar</button>
