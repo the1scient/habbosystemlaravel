@@ -24,9 +24,9 @@ Route::group(['middleware' => 'web'], function() {
 
 });
 
-Route::get('/usuarios', [App\Http\Controllers\UsuariosController::class, 'index'])->name('usuarios.index');
-Route::get('/usuarios/novo', [App\Http\Controllers\UsuariosController::class, 'create'])->name('usuarios.create');
-Route::post('/usuarios/add', [App\Http\Controllers\UsuariosController::class, 'add'])->name('usuarios.add');
-Route::get('/usuarios/{id}/editar', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('usuarios.edit');
-Route::post('/usuarios/{id}/update', [App\Http\Controllers\UsuariosController::class, 'update'])->name('usuarios.update');
-Route::get('/usuarios/{id}/delete', [App\Http\Controllers\UsuariosController::class, 'delete'])->name('usuarios.delete');
+Route::get('/usuarios', [App\Http\Controllers\UsuariosController::class, 'index'])->name('usuarios.index')->middleware('auth');
+Route::get('/usuarios/novo', [App\Http\Controllers\UsuariosController::class, 'create'])->name('usuarios.create')->middleware('auth');
+Route::post('/usuarios/add', [App\Http\Controllers\UsuariosController::class, 'add'])->name('usuarios.add')->middleware('auth');
+Route::get('/usuarios/{id}/editar', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('usuarios.edit')->middleware('auth');
+Route::post('/usuarios/{id}/update', [App\Http\Controllers\UsuariosController::class, 'update'])->name('usuarios.update')->middleware('auth');
+Route::get('/usuarios/{id}/delete', [App\Http\Controllers\UsuariosController::class, 'delete'])->name('usuarios.delete')->middleware('auth');
