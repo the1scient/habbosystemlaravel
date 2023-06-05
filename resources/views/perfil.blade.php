@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header">{{ __('Imagem | ' . $usuario->nickname) }}</div>
 
                     <div class="card-body">
@@ -21,7 +21,7 @@
 
             <div class="col-md-8">
 
-                <div class="card">
+                <div class="card shadow-lg">
 
 
                     <div class="card-header">{{ __('Perfil | ' . $usuario->nickname) }}</div>
@@ -29,24 +29,29 @@
                     <div class="card-body">
                         <h1 class="text-center">{{ __('Informações de ' . $usuario->nickname) }}</h1>
                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nickname</th>
-                                    <th scope="col">Cargo</th>
-                                    <th scope="col">Data de Alistamento</th>
-                                    <th scope="col">Status</th>
-
-                                </tr>
-                            </thead>
                             <tbody>
-                                <tr>
-                                    <td>{{ $usuario->nickname }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                            <tr>
+                                <td><strong>Nickname:</strong></td>
+                                <td>{{ $usuario->nickname }}</td>
+                                <td><strong>Data de Alistamento:</strong></td>
+                                <td>{{ date('d/m/Y H:i', strtotime($usuario->created_at)) }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cargo:</strong></td>
+                                <td>{{ $cargo->nome ?? '-' }}</td>
+                                <td><strong>Última Promoção:</strong></td>
+                                <td>{{ date('d/m/Y H:i', strtotime($usuario->updated_at)) }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Status:</strong></td>
+                                <td>{{ app('App\Http\Controllers\UsuariosController')->userStatus($usuario->status) }}</td>
+                                <td><strong>Promovido por:</strong></td>
+                                <td>{{ $usuario->promovido_por ? app('App\Http\Controllers\UsuariosController')->promovidoPor($usuario->promovido_por) : '-' }}</td>
+
+                            </tr>
                             </tbody>
                         </table>
+
                         <a href="{{ url('usuarios/' . $usuario->id) . '/editar' }}" class="btn btn-warning">Editar</a>
                     </div>
 

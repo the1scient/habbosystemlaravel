@@ -50,7 +50,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <div style="display: flex; margin-top: -45%; float: left; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=spk&size=b'); background-repeat: no-repeat;"></div>
+                                <div style="display: flex; margin-top: -40%; float: left; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&size=b'); background-repeat: no-repeat;"></div>
 
                                 <a id="navbarDropdown" class="mt-1 nav-link dropdown-toggle font-weight-bold text-black" style="justify-content: center; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}

@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CargosController;
 
 class UsuariosController extends Controller
 {
@@ -48,11 +49,41 @@ class UsuariosController extends Controller
     public function perfil($username) {
         $usuario = Usuario::where('nickname', $username)->first();
 
+        $cargoController = new CargosController();
+        $cargo = $cargoController->getCargoById($usuario->id);
+
         if(!$usuario) {
             return Redirect::to('/usuarios');
         }
 
-        return view('perfil', ['usuario' => $usuario]);
+        return view('perfil', ['usuario' => $usuario, 'cargo' => $cargo]);
     }
+
+
+    public function promovidoPor($id) {
+        $usuario = Usuario::where('id', $id)->first();
+
+        if(!$usuario) {
+            return '-';
+        }
+
+        $promovidoPor = Usuario::where('id', $usuario->promovido_por)->first();
+
+        if(!$promovidoPor) {
+            return '-';
+        }
+
+        return $promovidoPor->nickname;
+    }
+
+    public function userStatus($statusId){
+        $status = [
+            1 => 'Ativo',
+            2 => 'Inativo',
+            3 => 'Banido'
+        ];
+        return $status[$statusId];
+    }
+
 
 }
