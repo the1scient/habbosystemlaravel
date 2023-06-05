@@ -15,19 +15,19 @@
                         @endif
 
                         <!-- bootstrap form -->
-                        <form action="{{ url('usuarios/add') }}" method="post">
+                        <form action="{{ url('usuarios/' . $usuario->id .  '/update') }}" method="post">
 
                             @csrf
                             <div class="form-group">
                                 <label for="nome">Nickname:</label>
-                                <input class="form-control mt-1" type="text" name="nickname" id="nome">
+                                <input class="form-control mt-1" type="text" name="nickname" id="nome"  value="{{ $usuario->nickname }}">
                             </div>
                             <div class="form-group mt-2">
                                 <label for="email">E-mail:</label>
-                                <input class="form-control mt-1" type="text" name="email" id="email">
+                                <input class="form-control mt-1" type="text" name="email" id="email" value="{{ $usuario->email }}">
                             </div>
 
-                        <button class="btn btn-primary mt-3" type="submit">Enviar</button>
+                            <button class="btn btn-primary mt-3" type="submit">Enviar</button>
                         </form>
 
 
