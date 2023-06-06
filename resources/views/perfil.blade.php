@@ -8,16 +8,15 @@
                     <div class="card-header">{{ __('Imagem | ' . $usuario->nickname) }}</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <img id="img-usuario" class="text-center" style="display: block; margin-left: auto; margin-right: auto; center; justify-content: center; text-align-last: center;" src="" alt="Avatar de {{ $usuario->nickname }}" >
-
+                        <h5 class="text-center">
+                            {{ $usuario->nickname }}
+                            <i class="fas fa-circle-check" style="color: #1978f4;" data-bs-toggle="tooltip" data-bs-placement="top" title="Verificado"></i>
+                        </h5>
+                        <img id="img-usuario" class="text-center" style="display: block; margin-left: auto; margin-right: auto; justify-content: center; text-align-last: center;" src="" alt="Avatar de {{ $usuario->nickname }}">
                     </div>
                 </div>
             </div>
+
 
             <div class="col-md-8">
 
@@ -27,7 +26,7 @@
                     <div class="card-header">{{ __('Perfil | ' . $usuario->nickname) }}</div>
 
                     <div class="card-body">
-                        <h1 class="text-center">{{ __('Informações de ' . $usuario->nickname) }}</h1>
+                        <h1 class="text-center">{{ (' Informações do usuário: ') }}</h1>
                         <table class="table">
                             <tbody>
                             <tr>
@@ -46,7 +45,8 @@
                                 <td><strong>Status:</strong></td>
                                 <td>{{ app('App\Http\Controllers\UsuariosController')->userStatus($usuario->status) }}</td>
                                 <td><strong>Promovido por:</strong></td>
-                                <td>{{ $usuario->promovido_por ? app('App\Http\Controllers\UsuariosController')->promovidoPor($usuario->promovido_por) : '-' }}</td>
+                                <td>{{ $usuario->promovidoPor->nickname }}</td>
+
 
                             </tr>
                             </tbody>
@@ -65,7 +65,7 @@
 
             <div class="col-md-8 mt-3">
 
-                <div class="card">
+                <div class="card shadow">
 
                     <div class="card-header">{{ __('Histórico de Promoções | ' . $usuario->nickname) }}</div>
 

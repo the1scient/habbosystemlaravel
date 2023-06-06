@@ -28,6 +28,7 @@
                                 <th scope="col">Imagem</th>
                                 <th scope="col">Nickname</th>
                                 <th scope="col">Cargo</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Ações</th>
                             </tr>
                             </thead>
@@ -47,9 +48,12 @@
                                 @endphp
                                 <tr>
                                     <th scope="row">{{ $usuario->id }}</th>
-                                    <td><img src="https://www.habbo.com.br/habbo-imaging/avatarimage?user={{ $usuario->nickname }}&action=std&gesture=std&direction=2&head_direction=2&size=m&img_format=png" alt="avatar"></td>
+                                    <td><img style="margin-top:-20%;" src="https://www.habbo.com.br/habbo-imaging/avatarimage?user={{ $usuario->nickname }}&action=std&gesture=std&direction=2&head_direction=2&size=m&img_format=png" alt="avatar"></td>
                                     <td><a style="color: {{ $cargoCor }}" href="{{ url('/perfil/' . $usuario->nickname) }}">{{ $usuario->nickname }}</a></td>
                                     <td>{{ $cargoNome }}</td>
+                                    <td>{{
+                                        app('App\Http\Controllers\UsuariosController')->userStatus($usuario->status)
+                                 }}</td>
                                     <td>
                                         <a href="{{ url('usuarios/' . $usuario->id) . '/editar' }}" class="btn btn-warning">Editar</a>
                                         <a href="{{ url('usuarios/' . $usuario->id) . '/delete' }}" class="btn btn-danger">Excluir</a>

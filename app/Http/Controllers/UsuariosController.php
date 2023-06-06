@@ -61,7 +61,12 @@ class UsuariosController extends Controller
 
     public function update(Request $request, $id) {
         $usuario = Usuario::findOrFail($id);
-        $usuario->update($request->all());
+        // update and update promovido_por
+        $usuario->nickname = $request->nickname;
+        $usuario->cargo = $request->cargo;
+        $usuario->promovido_por = auth()->user()->id;
+        $usuario->updated_at = date('Y-m-d H:i:s');
+        $usuario->save();
         Session::flash('message', 'Usuário atualizado com sucesso!');
         return Redirect::to('/perfil/' . $usuario->nickname);
     }
@@ -106,7 +111,7 @@ class UsuariosController extends Controller
     public function userStatus($statusId){
         $status = [
             1 => 'Ativo',
-            2 => 'Inativo',
+            2 => 'Aposentado',
             3 => 'Banido'
         ];
         return $status[$statusId];

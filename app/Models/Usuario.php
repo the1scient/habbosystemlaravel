@@ -10,5 +10,9 @@ class Usuario extends Model
     use HasFactory;
     protected $fillable = ['nickname', 'cargo', 'promovido_por'];
 
+    public function promovidoPor()
+    {
+        return $this->belongsTo(Usuario::class, 'promovido_por');
+    }
 
 }
