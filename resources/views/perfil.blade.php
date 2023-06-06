@@ -10,7 +10,9 @@
                     <div class="card-body">
                         <h5 class="text-center">
                             {{ $usuario->nickname }}
-                            <i class="fas fa-circle-check" style="color: #1978f4;" data-bs-toggle="tooltip" data-bs-placement="top" title="Verificado"></i>
+                                @if($usuario->verificado != 0)
+                            <i class="fas fa-circle-check" style="color: #1978f4;" data-bs-toggle="tooltip" data-bs-placement="right" title="Verificado"></i>
+                                @endif
                         </h5>
                         <img id="img-usuario" class="text-center" style="display: block; margin-left: auto; margin-right: auto; justify-content: center; text-align-last: center;" src="" alt="Avatar de {{ $usuario->nickname }}">
                     </div>
@@ -59,8 +61,16 @@
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 mt-3">
+                <div class="card">
+                    <div class="card-header">Emblemas e Grupos | {{ $usuario->nickname }}</div>
 
+                    <div class="card-body">
+                        <img data-bs-toggle="tooltip" data-bs-placement="right" title="Emblema" src="https://1.bp.blogspot.com/-7uLa-QXl3Rc/XDQnJo7Z41I/AAAAAAABKTQ/J_m6TrIqZAYG7Dx9MXiZu5WSd_ZjZh3ewCKgBGAs/s1600/NL593.gif">
+                    </div>
+
+
+                </div>
             </div>
 
             <div class="col-md-8 mt-3">
@@ -97,7 +107,6 @@
             </div>
 
 
-
 <script>
 
 // on ready pure js
@@ -122,8 +131,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 </script>
-
-
 
         </div>
     </div>
