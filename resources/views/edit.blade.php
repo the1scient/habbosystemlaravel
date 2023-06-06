@@ -32,6 +32,20 @@
                                 </select>
                             </div>
 
+                            <div class="form-group mt-2">
+                                <label for="status">Status:</label>
+                                <select class="form-control mt-1" name="status" id="status">
+                                    @foreach ($status as $s)
+                                        <option value="{{ $s->id }}" {{ $usuario->status == $s->id ? 'selected' : '' }}>{{ $s->nome }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <input type="checkbox"  class="form-check-input" name="verificado" id="verificado" {{ $usuario->verificado == 1 ? 'checked' : '' }}>
+                                <label for="verificado" class="form-check-label">Verificado</label>
+                            </div>
+
                             <button class="btn btn-primary mt-3" type="submit">Enviar</button>
                         </form>
 

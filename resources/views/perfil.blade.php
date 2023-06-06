@@ -45,7 +45,8 @@
                             </tr>
                             <tr>
                                 <td><strong>Status:</strong></td>
-                                <td>{{ app('App\Http\Controllers\UsuariosController')->userStatus($usuario->status) }}</td>
+                                <td>{{    app('App\Http\Controllers\StatusController')->getStatusById($usuario->status)->nome }}
+    </td>
                                 <td><strong>Promovido por:</strong></td>
                                 <td>{{ $usuario->promovidoPor->nickname }}</td>
 
@@ -86,18 +87,25 @@
                                 <tr>
                                     <th scope="col">Data</th>
                                     <th scope="col">Promovido por</th>
-                                    <th scope="col">Cargo</th>
+                                    <th scope="col">Cargo Antigo</th>
+                                    <th scope="col">Cargo Novo</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($historico as $h)
+                                <tr>
 
-                                    <tr>
-                                        <td>{{ date('d/m/Y H:i') }}</td>
-                                        <td>{{ 'test' }}</td>
-                                        <td>{{ 'test3' }}</td>
-                                    </tr>
+                                    <td>{{ date('d/m/Y H:i', strtotime($h->created_at)) }}</td>
+                                    <td>{{ $h->promovidoPor->nickname }}
+                                        <img src="https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ $h->promovidoPor->nickname }}&action=std&direction=4&head_direction=4&img_format=png&gesture=spk&headonly=1&size=s" alt="">
+                                    </td>
+                                    <td>{{ $h->oldcargo->nome }}</td>
+                                    <td>{{ $h->newcargo->nome }}</td>
 
+                                </tr>
+                            @endforeach
                             </tbody>
+
                         </table>
 
                     </div>
