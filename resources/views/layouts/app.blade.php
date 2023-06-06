@@ -78,10 +78,11 @@
 
                             <li class="nav-item dropdown">
 
-                                <a id="navbarDropdown" class="mt-5 nav-link dropdown-toggle font-weight-bold text-black" style="display: inline-block; justify-content: center; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold text-black" style="display: inline-block;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->username }}
                                 </a>
-                                <div style="display: flex; float: right; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&size=b'); background-repeat: no-repeat;"></div>
+                                <img style="margin-top: -5%; " src="https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&headonly=1&size=b" alt="">
+
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('perfil/' . Auth::user()->username) }}">
