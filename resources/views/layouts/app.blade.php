@@ -9,6 +9,7 @@
 
     <title>System</title>
 
+    <link rel="shortcut icon" href="https://www.habbo.com.br/habbo-imaging/badge/b07124s19067s41174s28154s6209110d54fb5fee9407648f1eef9c1236158.gif" type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -18,12 +19,27 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .headernav {
+            padding: 10px;
+            border-radius: 2px;
+            transition: 0.5s;
+        }
+        .headernav:hover {
+            background-color: #e9ecef;
+            border-radius: 2px;
+            transition: 0.5s;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="https://www.habbo.com.br/habbo-imaging/badge/b07124s19067s41174s28154s6209110d54fb5fee9407648f1eef9c1236158.gif" alt="">
                     System
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -36,8 +52,8 @@
                         <!-- ver /usuarios -->
                         @guest()
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link mt-1 text-black" href="{{ url('usuarios') }}">Usuários</a>
+                        <li class="nav-item headernav">
+                            <a class="nav-link text-black" href="{{ url('usuarios') }}">Usuários</a>
                         </li>
                         @endguest
 
@@ -61,11 +77,11 @@
                         @else
 
                             <li class="nav-item dropdown">
-                                <div style="display: flex; margin-top: -40%; float: left; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&size=b'); background-repeat: no-repeat;"></div>
 
-                                <a id="navbarDropdown" class="mt-1 nav-link dropdown-toggle font-weight-bold text-black" style="justify-content: center; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="mt-5 nav-link dropdown-toggle font-weight-bold text-black" style="display: inline-block; justify-content: center; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->username }}
                                 </a>
+                                <div style="display: flex; float: right; height: 80px; width: 62px; background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?&user={{ Auth::user()->username }}&action=std&direction=3&head_direction=3&img_format=png&gesture=sml&size=b'); background-repeat: no-repeat;"></div>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('perfil/' . Auth::user()->username) }}">
